@@ -26,6 +26,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _GlossMapScale: 0
     - _Glossiness: 0.5
     - _Metallic: 0
     m_Colors:
