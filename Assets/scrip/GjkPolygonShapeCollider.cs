@@ -1,10 +1,10 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class GjkPolygonShapeCollider : MonoBehaviour, IVertexShape
 {
     [SerializeField] private Vector2[] vertices;
     public Color DebugColor = Color.green;
-    public Vector2 Support(Vector2 direction)
+    public Vector2 GetSupportPoint(Vector2 direction)
     {
         Vector2 worldDirection = direction.normalized;
         float maxDot = float.NegativeInfinity;
@@ -24,19 +24,19 @@ public class GjkPolygonShapeCollider : MonoBehaviour, IVertexShape
     }
     public void OnShapeTriggerEnter(GjkPolygonShapeCollider other)
     {
-        DebugColor = DebugColor.red;
+        DebugColor = Color.red;
     }
     private void OnDrawGizmos()
     {
-        if (vertices == null || _vertices.Length < 2) return;
+        if (vertices == null || vertices.Length < 2) return;
 
         Gizmos.color = DebugColor;
 
 
-        for (int i = 0; i < _vertices.Length; i++)
+        for (int i = 0; i < vertices.Length; i++)
         {
-            Vector2 localStart = _vertices[i];
-            Vector2 localend = _vertices[(i + 1) % _vertices.Length];
+            Vector2 localStart = vertices[i];
+            Vector2 localend = vertices[(i + 1) % vertices.Length];
             Vector2 worldStart = transform.TransformPoint(localStart);
             Vector2 worldEnd = transform.TransformPoint(localend);
             Gizmos.DrawLine(worldStart, worldEnd);

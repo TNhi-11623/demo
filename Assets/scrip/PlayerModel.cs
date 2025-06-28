@@ -1,16 +1,48 @@
 using UnityEngine;
+using System;
 
-public class PlayerModel : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static Player Instance { get; private set; }
+
+    public event Action<int> OnHealthChanged;    // Add this event
+    public event Action OnPlayerDied;            // Add this event
+
+    private int health;
+    public int Health
     {
-        
+        get { return health; }
+        set
+        {
+            if (value < 0)
+            {
+                health = 0;
+            }
+            else
+            {
+                health = value;
+            }
+            OnHealthChanged?.Invoke(health); // Fire event
+
+            if (health == 0)
+            {
+                OnPlayerDied?.Invoke(); // Fire event when dead
+            }
+
+            // If you still want to notify HealthService, keep this line:
+            // HealthService.Instance.NotifyHealthChanged(health);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

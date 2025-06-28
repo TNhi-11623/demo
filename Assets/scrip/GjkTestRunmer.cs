@@ -3,6 +3,8 @@ using UnityEngine;
 public class GjkTestRunmer : MonoBehaviour
 {
     public GjkPolygonShapeCollider[] shape;
+    public GjkPolygonShapeCollider A;
+    public GjkPolygonShapeCollider B;
     public void Update()
     {
         for (int i = 0; i < shape.Length; i++)
@@ -13,8 +15,8 @@ public class GjkTestRunmer : MonoBehaviour
                 var shapeB = shape[j];
                 if (GJKPhysic2D.IsColliding(shape[i], shape[j]))
                 {
-                    shape[i].OnShapeTriggerEnter(shape[A]);
-                    shape[j].OnShapeTriggerEnter(shape[B]);
+                    shape[i].OnShapeTriggerEnter(A);
+                    shape[j].OnShapeTriggerEnter(B);
                 }
                 else
                 {

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class HealthUI : MonoBehaviour
 {
    [SerializeField] private Text healthText;
+   
     private void Start()
     {
         Player.Instance.OnHealthChanged += UpdateHealthUI;
