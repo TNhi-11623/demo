@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MyGame.Spawning;
 public class GameManager : MonoBehaviour
 {
      [SerializeField] public int SpawnObjectCountInASecond = 1;

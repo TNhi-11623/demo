@@ -2,7 +2,9 @@ using UnityEngine;
 using System.Collections;
 using Utils;
 using System;
-public class SpawnObject : MonoSingleton<SpawnObject>
+namespace MyGame.Spawning
+{
+   public class SpawnObject : MonoSingleton<SpawnObject>
 {
     private ObjectPool objectPool;
    private string poolObjectName;
@@ -41,4 +43,6 @@ public class SpawnObject : MonoSingleton<SpawnObject>
             Spawn(poolObjectName);
         }
     }
+}
+ 
 }
